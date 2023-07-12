@@ -7,7 +7,7 @@ const {getOneName,addUsers} = require('../utils/index')
 const {body,validationResult} = require('express-validator')
 
 //controllers
-const {HomeWeb,LoginUsers,RegisterUsers,DataUsers} = require('../Controllers/UserControllers')
+const {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile} = require('../Controllers/UserControllers')
 
 
 //middleware
@@ -19,6 +19,9 @@ const mainlayouts = require('express-ejs-layouts')
 app.set('view engine', 'ejs')
 app.use(mainlayouts)
 
+const jwt = require('jsonwebtoken')
+const secret = 'dashj1h2h4j5ij121iis'
+
 
 
 //router untuk rest
@@ -29,6 +32,8 @@ app.get('/',HomeWeb)
 app.get('/login',LoginUsers)
 
 app.get('/register',RegisterUsers)
+
+app.get('/profile',RegisterProfile)
 
 //router post
 app.post('/register', [
@@ -46,8 +51,14 @@ app.post('/register', [
     if(!error.isEmpty()){
         res.send({error: error.array()})
     }else{
+       jwt.sign({Username: req.body.Username},secret,{expiresIn: '1h'}, (err,token) => {
+        if(err)throw new err;
+        res.cookie('token',token)
+
+        // res.send({token})
         addUsers(req.body)
-        res.redirect('/login')
+        res.redirect('/profile')
+       })
     }
 })
 

@@ -27,11 +27,19 @@ const LoginUsers = (req,res) => {
 
 //register
 const RegisterUsers = (req,res) => {
-    res.render('register', {
-        title: 'halaman/register',
-        layout: 'register',
-    })
+        res.render('register', {
+            title: 'halaman/register',
+            layout: 'register',
+        })
+}
+
+//profile
+const RegisterProfile = (req,res) => {
+        res.render('profile', {
+            title: 'halaman/profile',
+            layout: 'main-layouts/main-layouts',
+         })
 }
 
 
-module.exports = {HomeWeb,LoginUsers,RegisterUsers,DataUsers}
+module.exports = {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile}
