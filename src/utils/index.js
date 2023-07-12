@@ -41,8 +41,26 @@ const addUsers = (User) => {
     saveUsers(Users)
 }
 
+//Profile
 
-module.exports = {loadUsers,getOneName,addUsers}
+const loadProfile = () => {
+    const Profiles = fs.readFileSync('./data-api/Profile.json','utf-8')
+    const getProfile = JSON.parse(Profiles)
+    return getProfile
+}
+
+
+const SaveProfiles = (Profiles) => {
+    fs.writeFileSync('./data-api/Profile.json', JSON.stringify(Profiles))
+}
+
+const addProfile = (profileGet) => {
+    const Profiles = loadProfile()
+    Profiles.push(profileGet)
+    SaveProfiles(Profiles)
+}
+
+module.exports = {loadUsers,getOneName,addUsers,addProfile}
 
 
 

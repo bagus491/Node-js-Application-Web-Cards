@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
 require('../utils/index')
-const {getOneName,addUsers} = require('../utils/index')
+const {getOneName,addUsers,addProfile} = require('../utils/index')
 
 // validator
 const {body,validationResult} = require('express-validator')
 
 //controllers
-const {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile} = require('../Controllers/UserControllers')
+const {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile,} = require('../Controllers/UserControllers')
 
 
 //middleware
@@ -57,7 +57,7 @@ app.post('/register', [
        jwt.sign({Username: req.body.Username},secret,{expiresIn: '1h'}, (err,token) => {
         if(err)throw new err;
         res.cookie('token',token)
-
+        res.cookie('id',req.body.Username)
         // res.send({token})
         addUsers(req.body)
         res.redirect('/profile')
@@ -71,7 +71,7 @@ app.post('/login',async (req,res) => {
         jwt.sign({Username: req.body.Username},secret,{expiresIn: '1h'}, (err,token) => {
             if(err)throw new err;
             res.cookie('token',token)
-
+            res.cookie('id',req.body.Username)
             //kalau berhasil
             res.redirect('/profile')
         })
@@ -81,6 +81,17 @@ app.post('/login',async (req,res) => {
 })
 
 app.post('/profile',Upload.single('Avatar'),(req,res) => {
-    res.send({Foto: req.file.path,Username:'tubagus'})
+    const token = req.cookies.token
+    if(token){
+        const dataOk =  getOneName(req.cookies.id)
+        if(dataOk){
+            addProfile({Foto: req.file.path,Username:req.cookies.id})
+            res.redirect('/profile')
+        }else{
+            res.send('gagal')
+        }
+    }else{
+        res.send('gagal')
+    }
 })
 module.exports = app
