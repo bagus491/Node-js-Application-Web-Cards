@@ -22,6 +22,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const secret = 'dashj1h2h4j5ij121iis'
 
+app.use('/uploads',express.static('uploads'))
 
 // kalau gak pakai cookie parser error
 

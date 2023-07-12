@@ -1,6 +1,6 @@
 
 
-const {loadUsers} = require('../utils/index')
+const {loadUsers,getProfile} = require('../utils/index')
 
 //data
 const DataUsers = (req,res) => {
@@ -80,9 +80,11 @@ const RegisterProfile = (req,res) => {
     if(token){
         const dataOk = req.cookies.id
         if(dataOk){
+            const getChanges = getProfile(req.cookies.id)
             res.render('profile', {
                 title: 'halaman/profile',
                 layout: 'main-layouts/main-layouts',
+                getChanges
              })
         }else{
             res.clearCookie('token')

@@ -60,7 +60,13 @@ const addProfile = (profileGet) => {
     SaveProfiles(Profiles)
 }
 
-module.exports = {loadUsers,getOneName,addUsers,addProfile}
+const getProfile = (Username) => {
+    const Profiles = loadProfile()
+    const findProfiles = Profiles.find((e) => e.Username === Username)
+    return findProfiles
+}
+
+module.exports = {loadUsers,getOneName,addUsers,addProfile,getProfile}
 
 
 

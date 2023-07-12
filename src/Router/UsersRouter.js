@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('../utils/index')
-const {getOneName,addUsers,addProfile} = require('../utils/index')
+const {getOneName,addUsers,addProfile,getProfile} = require('../utils/index')
 
 // validator
 const {body,validationResult} = require('express-validator')
@@ -37,6 +37,8 @@ app.get('/login',LoginUsers)
 app.get('/register',RegisterUsers)
 
 app.get('/profile',RegisterProfile)
+
+
 
 //router post
 app.post('/register', [
