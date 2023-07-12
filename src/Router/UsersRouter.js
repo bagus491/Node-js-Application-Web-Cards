@@ -62,4 +62,19 @@ app.post('/register', [
     }
 })
 
+app.post('/login',async (req,res) => {
+    const dataOk = await getOneName(req.body.Username)
+    if(dataOk){
+        jwt.sign({Username: req.body.Username},secret,{expiresIn: '1h'}, (err,token) => {
+            if(err)throw new err;
+            res.cookie('token',token)
+
+            //kalau berhasil
+            res.redirect('/profile')
+        })
+    }else{
+        res.redirect('/login')
+    }
+})
+
 module.exports = app
