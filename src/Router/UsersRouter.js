@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 require('../utils/index')
 
+//controllers
+const {HomeWeb,LoginUsers,RegisterUsers} = require('../Controllers/UserControllers')
+
 
 //middleware
 const path = require('path')
@@ -12,28 +15,11 @@ const mainlayouts = require('express-ejs-layouts')
 app.set('view engine', 'ejs')
 app.use(mainlayouts)
 
+app.get('/',HomeWeb)
 
-app.get('/',(req,res) => {
-   res.render('home', {
-    title: 'halaman/home',
-    layout: 'main-layouts/main-layouts'
-   })
-})
+app.get('/login',LoginUsers)
 
-app.get('/login',(req,res) => {
-    res.render('login', {
-        title: 'halaman/login',
-        layout: 'login',
-    })
-})
-
-app.get('/register', (req,res) => {
-    res.render('register', {
-        title: 'halaman/register',
-        layout: 'register',
-    })
-})
-
+app.get('/register',RegisterUsers)
 
 
 
