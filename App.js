@@ -9,15 +9,9 @@ const UserRouter = require('./src/Router/UsersRouter')
 
 //midleeware
 app.use(express.urlencoded({extended:true}))
-app.set(path.join(__dirname, 'src/views'))
 app.set(path.join(__dirname, 'src/public'))
 app.set(path.join(__dirname, 'src/router'))
-
-//middle
-const mainlayouts = require('express-ejs-layouts')
-app.set('view engine', 'ejs')
-app.use(mainlayouts)
-
+ 
 
 //roouter
 app.use(UserRouter)
