@@ -1,3 +1,4 @@
+const { json } = require('body-parser')
 const fs = require('fs')
 
 
@@ -20,10 +21,28 @@ const loadUsers = () => {
     return getUsers
 }
 
+//
+const getOneName = (Username) => {
+    const Users = loadUsers()
+    const getUsers = Users.find((e) => e.Username === Username)
+    return getUsers
+}
 
 
+//save contacts
+const saveUsers = (Users) => {
+    fs.writeFileSync('./data-api/Users.json',JSON.stringify(Users))
+}
 
-module.exports = {loadUsers}
+//addUsers
+const addUsers = (User) => {
+    const Users = loadUsers()
+    Users.push(User)
+    saveUsers(Users)
+}
+
+
+module.exports = {loadUsers,getOneName,addUsers}
 
 
 
