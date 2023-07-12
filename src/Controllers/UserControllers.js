@@ -1,5 +1,14 @@
 
 
+const {loadUsers} = require('../utils/index')
+
+//data
+const DataUsers = (req,res) => {
+    res.json(loadUsers())
+}
+
+
+
 //home
 const HomeWeb = (req,res) => {
     res.render('home', {
@@ -25,4 +34,4 @@ const RegisterUsers = (req,res) => {
 }
 
 
-module.exports = {HomeWeb,LoginUsers,RegisterUsers}
+module.exports = {HomeWeb,LoginUsers,RegisterUsers,DataUsers}

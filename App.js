@@ -3,12 +3,14 @@ const app = express()
 const port = 3000
 
 const path = require('path')
+const bodyparser = require('body-parser')
 
 //UsersController
 const UserRouter = require('./src/Router/UsersRouter')
 
 //midleeware
-app.use(express.urlencoded({extended:true}))
+app.use(bodyparser.urlencoded({extended: false}))
+app.use(bodyparser.json())
 app.set(path.join(__dirname, 'src/public'))
 app.set(path.join(__dirname, 'src/router'))
  

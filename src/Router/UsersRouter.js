@@ -3,7 +3,7 @@ const app = express()
 require('../utils/index')
 
 //controllers
-const {HomeWeb,LoginUsers,RegisterUsers} = require('../Controllers/UserControllers')
+const {HomeWeb,LoginUsers,RegisterUsers,DataUsers} = require('../Controllers/UserControllers')
 
 
 //middleware
@@ -14,6 +14,9 @@ app.set('views', path.join(__dirname, '../views'))
 const mainlayouts = require('express-ejs-layouts')
 app.set('view engine', 'ejs')
 app.use(mainlayouts)
+
+//router untuk rest
+app.get('/data',DataUsers)
 
 app.get('/',HomeWeb)
 
