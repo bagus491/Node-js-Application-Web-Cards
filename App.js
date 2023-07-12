@@ -15,6 +15,10 @@ app.set(path.join(__dirname, 'src/router'))
 
 //roouter
 app.use(UserRouter)
+app.use('/', (req,res) => {
+    res.status(404)
+    res.send('404 Not Found')
+})
 
 
 app.listen(port, () => {
