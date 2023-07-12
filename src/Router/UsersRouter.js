@@ -2,9 +2,10 @@ const express = require('express')
 const app = express()
 require('../utils/index')
 
+
 //middleware
 const path = require('path')
-app.set(path.join(__dirname, '../views'))
+app.set('views', path.join(__dirname, '../views'))
 
 //middle
 const mainlayouts = require('express-ejs-layouts')
@@ -13,7 +14,10 @@ app.use(mainlayouts)
 
 
 app.get('/',(req,res) => {
-    res.send('hello world')
+   res.render('home', {
+    title: 'halaman/home',
+    layout: 'main-layouts/main-layouts'
+   })
 })
 
 
