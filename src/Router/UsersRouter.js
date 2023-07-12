@@ -81,7 +81,6 @@ app.post('/login',async (req,res) => {
 })
 
 app.post('/profile',Upload.single('Avatar'),(req,res) => {
-    const imageurl = req.file.path
-    res.send(imageurl)
+    res.send({Foto: req.file.path,Username:'tubagus'})
 })
 module.exports = app
