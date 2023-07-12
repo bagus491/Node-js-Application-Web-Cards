@@ -15,16 +15,15 @@
               <!-- last form -->
             </div>
           </div>
+        <% } else {%>
+            <div class="card" style="width: 18rem; margin-right: 10px;">
+                <img src="<%= getChanges.Foto %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Welcome <%= getChanges.Username  %></h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="/logout" class="btn btn-primary">Logout</a>
+                </div>
+              </div>
         <% } %>
-        
-        
-        <div class="card" style="width: 18rem; margin-right: 10px;">
-            <img src="<%= getChanges.Foto %>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
   
 </div>

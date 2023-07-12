@@ -99,5 +99,12 @@ const RegisterProfile = (req,res) => {
        
 }
 
+//logout
+const Logout = (req,res) => {
+    res.clearCookie('token')
+    res.clearCookie('id')
+    res.redirect('/login')
+}
 
-module.exports = {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile}
+
+module.exports = {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile,Logout}

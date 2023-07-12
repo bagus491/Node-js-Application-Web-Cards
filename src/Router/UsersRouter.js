@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
 require('../utils/index')
-const {getOneName,addUsers,addProfile,getProfile} = require('../utils/index')
+const {getOneName,addUsers,addProfile} = require('../utils/index')
 
 // validator
 const {body,validationResult} = require('express-validator')
 
 //controllers
-const {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile,} = require('../Controllers/UserControllers')
+const {HomeWeb,LoginUsers,RegisterUsers,DataUsers,RegisterProfile,Logout} = require('../Controllers/UserControllers')
 
 
 //middleware
@@ -38,7 +38,7 @@ app.get('/register',RegisterUsers)
 
 app.get('/profile',RegisterProfile)
 
-
+app.get('/logout',Logout)
 
 //router post
 app.post('/register', [
