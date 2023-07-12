@@ -1,1 +1,17 @@
-<h1>profile</h1>
+<div class="container d-flex justify-content-center" style="height: 100vh; align-items: center;">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">UploadFoto</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Isi Dengan Benar</h6>
+          <!-- form -->
+          <form method="post" action="/profile" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="Avatar" class="form-label">Avatar</label>
+                <input type="file" class="form-control" name="Avatar"  id="Avatar" required>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <!-- last form -->
+        </div>
+      </div>
+</div>

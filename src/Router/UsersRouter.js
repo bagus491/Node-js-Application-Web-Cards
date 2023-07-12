@@ -23,6 +23,9 @@ const jwt = require('jsonwebtoken')
 const secret = 'dashj1h2h4j5ij121iis'
 
 
+const multer = require('multer')
+const Upload = multer({dest: 'uploads/'})
+
 
 //router untuk rest
 app.get('/data',DataUsers)
@@ -77,4 +80,8 @@ app.post('/login',async (req,res) => {
     }
 })
 
+app.post('/profile',Upload.single('Avatar'),(req,res) => {
+    const imageurl = req.file.path
+    res.send(imageurl)
+})
 module.exports = app
